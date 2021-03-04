@@ -1,0 +1,66 @@
+{
+    "name": "magedin/module-frenet-usd-conversion",
+    "version": "1.0.0",
+    "description": "This module can be used to convert Frenet quotations from US Dollar to the store currency.",
+    "type": "magento2-module",
+    "keywords": [
+        "frenet",
+        "dollar-conversion",
+        "freight",
+        "freight-cotation"
+    ],
+    "require": {
+        "php": "^7.2.0||^8.0.0",
+        "magento/framework": "102.0.*||103.0.*",
+        "frenet/frenet-magento2": "^2.1.0"
+    },
+    "require-dev": {
+        "magedin/magento2-develop-tools": "~1.0.0"
+    },
+    "license": [
+        "Proprietary"
+    ],
+    "authors": [
+        {
+            "name": "MagedIn Technology",
+            "email": "support@magedin.com"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "MagedIn\\FrenetUsdConversion\\": ""
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        },
+        {
+            "type": "composer",
+            "url": "https://magedin.repo.repman.io"
+        }
+    ],
+    "scripts": {
+        "coding-standard": [
+            "@phpcs",
+            "@phpmd"
+        ],
+        "tests": [
+            "@coding-standard",
+            "@phpunit"
+        ],
+        "phpunit": "vendor/bin/phpunit Test",
+        "phpcs-configure": [
+            "vendor/bin/phpcs --config-set installed_paths vendor/magento/magento-coding-standard"
+        ],
+        "phpcs": [
+            "@phpcs-configure",
+            "vendor/bin/phpcs --standard=Magento2 --severity=1 --extensions=php Console Model Test"
+        ],
+        "phpmd": "vendor/bin/phpmd Plugin/, Model/ text cleancode,codesize,controversial,design,naming,unusedcode"
+    }
+}
