@@ -14,6 +14,6 @@ use Magento\Framework\Component\ComponentRegistrar;
 
 ComponentRegistrar::register(
     ComponentRegistrar::MODULE,
-    'MagedIn_FrenetUsdConversion',
+    'MagedIn_FrenetRatesConversion',
     __DIR__
 );
