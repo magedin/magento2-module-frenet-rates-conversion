@@ -2,3 +2,4 @@
 "Is Conversion Enabled","Is Conversion Enabled"
 "Don't Convert Rates for These Countries","Don't Convert Rates for These Countries"
 "Convertible Frenet Services","Convertible Frenet Services"
+"Frenet services codes that can be converted. Separated by comma.","Frenet services codes that can be converted. Separated by comma."

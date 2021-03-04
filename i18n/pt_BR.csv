@@ -1,4 +1,5 @@
 "Rates Conversion","Conversão de Moedas"
 "Is Conversion Enabled","Habilitar a Conversão"
 "Don't Convert Rates for These Countries","Não Converter as Taxas para Estes Países"
-"Convertible Frenet Services","Serviços Frenet Conversíveis"
+"Convertible Frenet Services","Códigos de Serviços Frenet Permitidos"
+"Frenet services codes that can be converted. Separated by comma.","Os códigos dos serviços da Frenet que podem ser convertidos. Separados por vírgula."
