@@ -28,4 +28,6 @@
             </argument>
         </arguments>
     </type>
+    <preference for="MagedIn\FrenetRatesConversion\Model\ServicePriceConverterInterface"
+                type="MagedIn\FrenetRatesConversion\Model\ServicePriceConverter"/>
 </config>

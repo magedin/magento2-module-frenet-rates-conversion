@@ -60,7 +60,11 @@ class Config
      */
     public function useStoreBaseCurrency(): bool
     {
-        return (bool) $this->getValue('use_store_base_currency');
+        /**
+         * If there's no conversion rate registered in Magento and exception will be thrown.
+         */
+        // return (bool) $this->getValue('use_store_base_currency');
+        return true;
     }
 
     /**
@@ -120,12 +124,7 @@ class Config
     private function getValue(string $field)
     {
         return $this->scopeConfig->getValue(
-            implode('/', [
-                'carriers',
-                'frenetshipping',
-                'rates_conversion',
-                $field
-            ])
+            implode('/', ['carriers', 'frenetshipping', 'rates_conversion', $field])
         );
     }
 }

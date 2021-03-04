@@ -16,7 +16,7 @@
            showInStore="0">
         <label>Rates Conversion</label>
         <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1"
-               showInStore="0">
+               showInStore="1">
             <label>Is Conversion Enabled</label>
             <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
         </field>
@@ -25,6 +25,7 @@
             <label>Don't Convert Rates for These Countries</label>
             <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
         </field>
+        <!--
         <field id="use_store_base_currency" translate="label" type="select" sortOrder="30" showInStore="0"
                showInWebsite="1" showInDefault="1">
             <label>Use Store Base Currency</label>
@@ -44,6 +45,7 @@
                 <field id="use_store_base_currency">0</field>
             </depends>
         </field>
+        -->
         <field id="allowed_service_codes" translate="label" type="textarea" sortOrder="50" showInStore="0"
                showInWebsite="1" showInDefault="1">
             <label>Convertible Frenet Services</label>

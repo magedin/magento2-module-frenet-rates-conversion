@@ -17,9 +17,6 @@ namespace MagedIn\FrenetRatesConversion\Model;
 use Frenet\ObjectType\Entity\Shipping\Quote\Service;
 use Frenet\Shipping\Service\RateRequestProvider;
 use MagedIn\FrenetRatesConversion\Model\Validator\ServiceConversionValidator;
-use Magento\Framework\Exception\LocalizedException;
-use Magento\Store\Api\Data\StoreInterface;
-use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
 class ServiceProcessor
@@ -35,14 +32,9 @@ class ServiceProcessor
     private $conversionValidator;
 
     /**
-     * @var StoreManagerInterface
+     * @var ServicePriceConverterInterface
      */
-    private $storeManager;
-
-    /**
-     * @var Config
-     */
-    private $config;
+    private $priceConverter;
 
     /**
      * @var LoggerInterface
@@ -52,14 +44,12 @@ class ServiceProcessor
     public function __construct(
         RateRequestProvider $rateRequestProvider,
         ServiceConversionValidator $conversionValidator,
-        StoreManagerInterface $storeManager,
-        Config $config,
+        ServicePriceConverterInterface $priceConverter,
         LoggerInterface $logger
     ) {
         $this->rateRequestProvider = $rateRequestProvider;
         $this->conversionValidator = $conversionValidator;
-        $this->storeManager = $storeManager;
-        $this->config = $config;
+        $this->priceConverter = $priceConverter;
         $this->logger = $logger;
     }
 
@@ -75,28 +65,11 @@ class ServiceProcessor
         }
 
         try {
-            $baseCurrency = $this->config->getBaseCurrency();
-            $defaultCurrency = $this->getStore()->getDefaultCurrency();
-
-            $basePrice = $service->getShippingPrice();
-            $convertedPrice = $baseCurrency->convert($basePrice, $defaultCurrency);
+            $convertedPrice = $this->priceConverter->convert($service->getShippingPrice());
             $service->setData('shipping_price', $convertedPrice);
         } catch (\Exception $e) {
             $this->logger->error($e);
         }
-
         return $service;
-    }
-
-    /**
-     * @return StoreInterface
-     */
-    private function getStore()
-    {
-        try {
-            return $this->storeManager->getStore();
-        } catch (\Exception $e) {
-            return $this->storeManager->getDefaultStoreView();
-        }
     }
 }
