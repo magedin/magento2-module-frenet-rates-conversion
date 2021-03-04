@@ -50,7 +50,7 @@ class ServicePriceConverter implements ServicePriceConverterInterface
     public function convert(float $price): float
     {
         $baseCurrency = $this->config->getBaseCurrency();
-        $defaultCurrency = $this->storeProvider->getStore()->getDefaultCurrency();
+        $defaultCurrency = $this->storeProvider->getStore()->getCurrentCurrency();
 
         try {
             return (float) $baseCurrency->convert($price, $defaultCurrency);

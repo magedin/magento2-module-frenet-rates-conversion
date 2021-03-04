@@ -47,7 +47,6 @@ class ShippingQuoteProcessor
             }
             $newQuotes[] = $this->serviceProcessor->process($service);
         }
-
         return $newQuotes;
     }
 }

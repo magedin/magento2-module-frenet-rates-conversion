@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace MagedIn\FrenetRatesConversion\Model;
 
+use MagedIn\FrenetRatesConversion\Model\DataProvider\StoreProvider;
 use Magento\Directory\Model\Currency;
 use Magento\Directory\Model\CurrencyFactory;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -37,14 +38,21 @@ class Config
      */
     private $storeManager;
 
+    /**
+     * @var StoreProvider
+     */
+    private $storeProvider;
+
     public function __construct(
         CurrencyFactory $currencyFactory,
         ScopeConfigInterface $scopeConfig,
-        StoreManagerInterface $storeManager
+        StoreManagerInterface $storeManager,
+        StoreProvider $storeProvider
     ) {
         $this->currencyFactory = $currencyFactory;
         $this->scopeConfig = $scopeConfig;
         $this->storeManager = $storeManager;
+        $this->storeProvider = $storeProvider;
     }
 
     /**
@@ -81,7 +89,7 @@ class Config
     public function getBaseCurrency(): Currency
     {
         if ($this->useStoreBaseCurrency()) {
-            return $this->getStore()->getBaseCurrency();
+            return $this->storeProvider->getStore()->getBaseCurrency();
         }
         return $this->getDefinedBaseCurrency();
     }
@@ -102,18 +110,6 @@ class Config
     {
         $countries = $this->getValue('not_convertible_countries');
         return explode(',', $countries);
-    }
-
-    /**
-     * @return StoreInterface|null
-     */
-    private function getStore(): StoreInterface
-    {
-        try {
-            return $this->storeManager->getStore();
-        } catch (\Exception $e) {
-            return $this->storeManager->getDefaultStoreView();
-        }
     }
 
     /**

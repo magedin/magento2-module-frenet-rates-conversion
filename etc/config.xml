@@ -19,7 +19,7 @@
                     <not_convertible_countries>BR</not_convertible_countries>
                     <use_store_base_currency>0</use_store_base_currency>
                     <defined_base_currency>USD</defined_base_currency>
-                    <allowed_service_codes>RTE1</allowed_service_codes>
+                    <allowed_service_codes>P</allowed_service_codes>
                 </rates_conversion>
             </frenetshipping>
         </carriers>
