@@ -51,9 +51,10 @@ class ServicePriceConverter implements ServicePriceConverterInterface
     {
         try {
             $baseCurrency = $this->config->getBaseCurrency();
-            $currentCurrency = $this->storeProvider->getStore()->getCurrentCurrency();
+            $serviceCurrency = $this->config->getServiceBaseCurrency();
+            $rate = $baseCurrency->getRate($serviceCurrency->getCurrencyCode()) ?? 1;
 
-            return (float) $baseCurrency->convert($price, $currentCurrency);
+            return (float) $price / $rate;
         } catch (\Exception $e) {
             $this->logger->error($e);
             return $price;

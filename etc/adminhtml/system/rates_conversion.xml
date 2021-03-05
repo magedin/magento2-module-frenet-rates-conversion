@@ -46,6 +46,15 @@
             </depends>
         </field>
         -->
+        <field id="service_base_currency" translate="label" type="select" sortOrder="40" showInStore="0"
+               showInWebsite="1" showInDefault="1">
+            <label>Convert From Currency</label>
+            <source_model>Magento\Config\Model\Config\Source\Locale\Currency</source_model>
+            <backend_model>Magento\Config\Model\Config\Backend\Currency\Allow</backend_model>
+            <depends>
+                <field id="use_store_base_currency">0</field>
+            </depends>
+        </field>
         <field id="allowed_service_codes" translate="label" type="textarea" sortOrder="50" showInStore="0"
                showInWebsite="1" showInDefault="1">
             <label>Convertible Frenet Services</label>

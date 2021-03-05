@@ -86,6 +86,14 @@ class Config
     /**
      * @return Currency
      */
+    public function getServiceBaseCurrency(): Currency
+    {
+        return $this->currencyFactory->create()->load($this->getValue('service_base_currency'));
+    }
+
+    /**
+     * @return Currency
+     */
     public function getBaseCurrency(): Currency
     {
         if ($this->useStoreBaseCurrency()) {
