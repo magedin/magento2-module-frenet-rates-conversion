@@ -1,5 +1,5 @@
 {
-    "name": "magedin/module-frenet-usd-conversion",
+    "name": "magedin/module-frenet-rates-conversion",
     "version": "1.0.0",
     "description": "This module can be used to convert Frenet quotations from a given currency, like US Dollar, to the current store currency.",
     "type": "magento2-module",
