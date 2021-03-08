@@ -18,7 +18,7 @@
         "magedin/magento2-develop-tools": "~1.0.0"
     },
     "license": [
-        "Proprietary"
+        "MIT"
     ],
     "authors": [
         {
